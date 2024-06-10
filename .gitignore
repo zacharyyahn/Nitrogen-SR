@@ -6,3 +6,6 @@
 *.npy
 *.netcdf
 *.pdf
+*.model
+*.csv
+*.txt
