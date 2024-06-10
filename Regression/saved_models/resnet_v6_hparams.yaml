@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.0001
+  batch_size: 1
+  epochs: 500
+  data_path: "../Dataset/ninab1_20m_v0_SR/"
+  note: "Attempting to learn on ChannelSR data"
+  num_inputs: 12

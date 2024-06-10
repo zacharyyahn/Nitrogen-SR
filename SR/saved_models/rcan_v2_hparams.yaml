@@ -1,0 +1,11 @@
+DEFAULT:
+  model: "rcan"
+  scale: 2.0
+  lr: 0.00001
+  batch_size: 1
+  epochs: 50
+  sample_size: 500
+  one_channel: False
+  channel_select: 3
+  loss_fn: "psnr"
+  note: ""

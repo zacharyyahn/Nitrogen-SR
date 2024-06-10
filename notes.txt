@@ -1,0 +1,25 @@
+Project goal:
+
+Use super-resolution to generate downscaled (higher resolution) images from Sentinel 2-P and Sentinel 5-P, then feed these into existing networks like CombineDeepNet or other popular architectures to see if they improve performance.
+
+Variables:
+- Output resolution
+- Input images (possible to combine many?), non-image features
+- Various SR methods, non-DL methods for baseline
+
+Possible contributions:
+- Super-resolution for multi-channel images (probably done before?)
+- Novel application of SR
+
+Questions:
+- What dataset would we try to apply this to? 
+- What kind of compute resources do we have?
+- How can we verify that SR adds meaningful information to an image?
+- Good starting places for these models?
+- What to do about other papers that use much higher resolution data -> disadvantage is that it is much more limited?
+
+Next:
+- Other SR architectures (Diffusion models?)
+- Verifying by predicting pollution
+- Why are SR'd images to similar to the originals
+- Look at SR techniques and see if they add noise, that kind of thing

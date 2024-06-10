@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.005
+  batch_size: 1
+  epochs: 500
+  data_path: "../Dataset/Formatted/"
+  note: "Trying an even more aggressive learning rate"
+  num_inputs: 12

@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.0001
+  batch_size: 1
+  epochs: 500
+  note: "Back to full dataset, no freezing, no pretraining, SGD optimiser with 0.00005 weight decay"
+  data_path: "../Dataset/Formatted/"
+  num_inputs: 12

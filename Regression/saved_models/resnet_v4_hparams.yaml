@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.0001
+  batch_size: 1
+  epochs: 500
+  data_path: "../Dataset/Formatted/"
+  note: "Training on just the four 10m res images. Note that resnet must also be changed to accept 4 input channels instead of 12"
+  num_inputs: 4

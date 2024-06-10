@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.0001
+  batch_size: 1
+  epochs: 500
+  data_path: "../Dataset/ninab1_v6_SR/"
+  note: "Training same model on ninab1 SR images"
+  num_inputs: 12

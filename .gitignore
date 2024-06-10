@@ -1,0 +1,8 @@
+*.ckpt
+*.png
+*.jpg
+*.jpeg
+*.pyc
+*.npy
+*.netcdf
+*.pdf
