@@ -17,12 +17,13 @@ class net(nn.Module):
         self.model = ninasr_b1(int(params.scale), pretrained=True)
 
         #Freeze everything except for the upsampler
-        i = 0
-        for child in self.model.children():
-            if i < 3:
-                child.requires_grad = False
-            if i == 3:
-                child.requires_grad = True
+        # i = 0
+        # for child in self.model.children():
+        #     if i < 3:
+        #         child.requires_grad = False
+        #     if i == 3:
+        #         child.requires_grad = True
+        #     i += 1
     
     def forward(self, im):
         

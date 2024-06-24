@@ -5,7 +5,7 @@ DEFAULT:
   batch_size: 1
   epochs: 50
   sample_size: 500
-  one_channel: True
-  channel_select: 3
+  channel_subset: False
+  channel_select: []
   loss_fn: "mse"
   note: "Trying rcan with only channel 3 which is highest resolution"

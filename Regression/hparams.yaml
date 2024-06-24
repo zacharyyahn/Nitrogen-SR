@@ -3,6 +3,6 @@ DEFAULT:
   lr: 0.0001
   batch_size: 1
   epochs: 500
-  data_path: "../Dataset/ninab1_20m_v0_SR/"
-  note: "Attempting to learn on ChannelSR data"
-  num_inputs: 10
+  data_path: "../Dataset/Formatted/"
+  note: "Trying a LR scheduler that divides in half every 5 epochs"
+  num_inputs: 12

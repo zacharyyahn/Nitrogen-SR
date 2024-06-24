@@ -49,10 +49,11 @@ train = model_import.train
 val = model_import.val
 
 #Load model, train function, eval function
-loss_function = torch.nn.MSELoss()
-#optimizer = torch.optim.Adam(model.parameters(), lr=params.lr)
-optimizer = torch.optim.SGD(model.parameters(), lr=params.lr, weight_decay=0.00005)
+loss_function = torch.nn.L1Loss()
+optimizer = torch.optim.Adam(model.parameters(), lr=params.lr)
+#optimizer = torch.optim.SGD(model.parameters(), lr=params.lr, weight_decay=0.00005)
 #scheduler = lr_scheduler.LinearLR(optimizer, start_factor=0.1, end_factor=1.0, total_iters=15)
+scheduler = lr_scheduler.StepLR(optimizer, 5, 0.5, -1)
 
 #Prepare data
 train_data = dataset.NO2Dataset(params, params.data_path,  split="train", do_augment=True)
@@ -71,7 +72,7 @@ val_loader = DataLoader(
     )
 
 print("Preparing to train", params.model, "for", num_epochs, "epochs.")
-print("Batch size:", params.batch_size, ", lr:", params.lr, ", loss_fn: MSE")
+print("Batch size:", params.batch_size, ", lr:", params.lr, ", loss_fn: MAE")
 print("Images read from", params.data_path)
 global_start = time.perf_counter()
 
@@ -80,24 +81,25 @@ train_losses, train_psnrs, val_losses, val_psnrs = [], [], [], []
 for epoch in range(num_epochs):
     start_time = time.perf_counter()
     print("---- Epoch Number: %s ----" % (epoch + 1))
+    print(f"LR is {scheduler.get_last_lr()}")
 
     #Train
     train(model, device, train_loader, optimizer, loss_function)
         # Evaluate on both the training and validation set. 
     train_loss, train_scores = val(model, device, train_loader, loss_function)
-    print('\rEpoch: [%d/%d], Train loss: %.6f' % (epoch+1, num_epochs, train_loss))
-
-    #scheduler.step()
+    print('\rEpoch: [%d/%d], Train loss: %.6f, Real MSE: %0.6f, Real MAE: %0.6f' % (epoch+1, num_epochs, train_loss, train_scores["real_mse"], train_scores["real_mae"]))
 
     #Validation
     val_loss, val_scores = val(model, device, val_loader, loss_function)
-    print('Epoch: [%d/%d], Valid loss: %.6f' % (epoch+1, num_epochs, val_loss))
+    print('Epoch: [%d/%d], Valid loss: %.6f, Real MSE: %0.6f, Real MAE:%0.6f' % (epoch+1, num_epochs, val_loss, val_scores["real_mse"], val_scores["real_mae"]))
     
     # Collect some data for logging purposes. 
     train_losses.append(float(train_loss))
     val_losses.append(float(val_loss))
     end_time = time.perf_counter()
     print("Took %0.1f seconds" % (end_time - start_time))
+
+    scheduler.step()
 
     #If we've found the best model so far
     if val_loss == np.min(val_losses):

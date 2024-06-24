@@ -10,7 +10,7 @@ class net(nn.Module):
         super(net, self).__init__()
 
         #Create a ResNet50 architecture and change its conv1 layer to accept 12 channel inputs
-        self.backbone = resnet50(pretrained=False, num_classes=19)
+        self.backbone = resnet50(weights="IMAGENET1K_V1")
         self.backbone.conv1 = torch.nn.Conv2d(params.num_inputs, 64, kernel_size=(3,3), stride=(2,2), padding=(3,3), bias=False)
 
         if torch.cuda.is_available():
@@ -28,10 +28,10 @@ class net(nn.Module):
         self.head = nn.Sequential(nn.Linear(2048, 512), nn.Sigmoid(), nn.Linear(512, 1))
 
         #Try freezing everything but the head
-        for param in self.backbone.parameters():
-            param.require_grad = True
-        for param in self.head.parameters():
-            param.require_grad = True
+        # for param in self.backbone.parameters():
+        #     param.require_grad = True
+        # for param in self.head.parameters():
+        #     param.require_grad = True
     
     def forward(self, x):
         x = self.backbone(x)
@@ -40,14 +40,20 @@ class net(nn.Module):
 
 def train(model, device, train_loader, optimizer, loss_function):
     model.train()
+    # print("--- TRAIN ---")
     for (im, n02) in tqdm(train_loader, leave=False):
         im = im.to(device)
         n02 = n02.to(device)
+        #print(f"Im has max {im.max()} and min {im.min()}")
+        #print("Have n02 value", n02)
 
         #Forward pass
         optimizer.zero_grad()
         out = model(im)
         loss = loss_function(out, n02)
+        # print("Wanted", n02, "got", out)
+        # print("Got train loss", loss.item())
+        #print("Got loss", loss)
 
         #print("Expected", n02, "got", out, "propagating loss", loss)
 
@@ -56,8 +62,11 @@ def train(model, device, train_loader, optimizer, loss_function):
         optimizer.step()
 
 def val(model, device, loader, loss_function):
+    # print("--- VAL ---")
     max_n02 = 71.75532137
     min_n02 = -2.68378695
+    avg_n02 = 18.71056311
+    std_n02 = 13.1422108
     model.eval()
     losses = []
     real_mses = []
@@ -69,13 +78,17 @@ def val(model, device, loader, loss_function):
             out = model(im)
             # _, pred = torch.max(out.data, 1)
             loss = loss_function(out, n02)
+            # print("Wanted:", n02, "got", out)
+            # print("loss", loss.item())
             #print("Given loss", loss)
             losses.append(loss.item())
 
             #undo normalization
-            real_out = (out * (max_n02 - min_n02)) + min_n02
-            real_n02 = (n02 * (max_n02 - min_n02)) + min_n02
-            real_mse = loss_function(real_out,real_n02)
+            # real_out = (out * (max_n02 - min_n02)) + min_n02
+            # real_n02 = (n02 * (max_n02 - min_n02)) + min_n02
+            real_out = (out * std_n02 + avg_n02)
+            real_n02 = (n02 * std_n02 + avg_n02)
+            real_mse = np.abs(real_out - real_n02) * np.abs(real_out - real_n02)
             real_mae = np.abs(real_out - real_n02)
             #print("Got", out, "and wanted", n02, "with loss", loss)
             #print("Giving got", real_out, "and wanted", real_n02, "with real loss", real_mse)

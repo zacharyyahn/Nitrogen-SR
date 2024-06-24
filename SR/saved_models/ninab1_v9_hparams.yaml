@@ -3,9 +3,9 @@ DEFAULT:
   scale: 2.0
   lr: 0.00001
   batch_size: 1
-  epochs: 5000
-  sample_size: 50
-  one_channel: False
-  channel_select: 3
+  epochs: 50
+  sample_size: 10
+  channel_subset: False
+  channel_select: [4, 5, 6, 7, 8, 9]
   loss_fn: "psnr"
-  note: "Layers are frozen again for testing"
+  note: "nina2b on 20m res images"

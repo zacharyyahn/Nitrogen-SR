@@ -16,7 +16,7 @@ import time
 from skimage.transform import rescale, resize, downscale_local_mean
 
 class NO2Dataset(Dataset):
-    def __init__(self, params, img_dir, split="train", flatten=True, do_augment=False):
+    def __init__(self, params, img_dir, split, flatten=True, do_augment=False):
         """
         data_dir (str): Path to data containing data and labels. 
         X_filename (str): Name of file containing input data. 
@@ -59,12 +59,16 @@ class NO2Dataset(Dataset):
         #Note: Images are already normalized when they are saved, they just need to be rescaled from 0-255 to 0-1
         im = im.astype('float64')
         im /= 255.0
+        im = (im - np.mean(im)) / np.std(im)
         # im = im[:4, :, :]
         
         #Normalize between 0 and 1 - values are computed in separate spreadsheet
         max_n02 = 71.75532137
         min_n02 = -2.68378695
-        n02 = (n02 - min_n02) / (max_n02 - min_n02)
+        avg_n02 = 18.71056311
+        std_n02 = 13.1422108
+        #n02 = (n02 - min_n02) / (max_n02 - min_n02)
+        n02 = (n02 - avg_n02)/std_n02
         return im, n02
 
     def __len__(self):

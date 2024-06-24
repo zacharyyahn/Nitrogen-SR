@@ -53,7 +53,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]='0'
 
 model_import = __import__('.'.join(['models', params.model]),  fromlist=['object'])
 model = model_import.net(params).to(device)
-model.load_state_dict(torch.load("saved_models/" + args.model_name + ".ckpt"))
+model.load_state_dict(torch.load("saved_models/" + args.model_name + ".ckpt", map_location=device))
 
 val = model_import.val
 

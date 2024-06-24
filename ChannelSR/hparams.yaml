@@ -1,11 +1,13 @@
 DEFAULT:
-  model: "ninab1_20m"
+  model: "ninacustom_20m"
   scale: 2.0
   lr: 0.00001
   batch_size: 1
-  epochs: 50
+  epochs: 100
   sample_size: 500
   channel_subset: True
   channel_select: [4, 5, 6, 7, 8, 9]
   loss_fn: "mse"
-  note: "RCAN on 20m res images after ninab2 didn't learn very well"
+  note: "ninacustom with 5 and 16 residual layers and features"
+  nina_res: 5
+  nina_feats: 16

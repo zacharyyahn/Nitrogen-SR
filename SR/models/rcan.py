@@ -26,10 +26,8 @@ class net(nn.Module):
     
     def forward(self, im):
 
-        #Make the input 3 channels instead of 1
-        out = torch.stack((im, im, im), axis=1)
-        
-        return self.model(out)
+        #Make the input 3 channels instead of 1        
+        return self.model(im)
     
 def train(model, device, train_loader, optimizer, loss_function):
     model.train()

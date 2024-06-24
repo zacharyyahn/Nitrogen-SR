@@ -1,11 +1,13 @@
 DEFAULT:
-  model: "ninab2"
+  model: "ninacustom"
   scale: 2.0
-  lr: 0.00001
+  lr: 0.0001
   batch_size: 1
   epochs: 50
   sample_size: 500
-  channel_subset: True
+  channel_subset: False
   channel_select: [4, 5, 6, 7, 8, 9]
-  loss_fn: "psnr"
-  note: "nina2b on 20m res images"
+  loss_fn: "mse"
+  note: "custom nina with 16 and 16"
+  nina_res: 16
+  nina_feats: 16

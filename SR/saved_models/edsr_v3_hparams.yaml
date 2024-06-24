@@ -1,0 +1,11 @@
+DEFAULT:
+  model: "edsr"
+  scale: 2.0
+  lr: 0.0001
+  batch_size: 1
+  epochs: 200
+  sample_size: 500
+  channel_subset: False
+  channel_select: [4, 5, 6, 7, 8, 9]
+  loss_fn: "mse"
+  note: "edsr on all images"

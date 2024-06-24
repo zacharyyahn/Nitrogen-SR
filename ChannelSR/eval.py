@@ -52,8 +52,8 @@ os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]='0'
 
 model_import = __import__('.'.join(['models', params.model]),  fromlist=['object'])
-model = model_import.net(params).to(device)
-model.load_state_dict(torch.load("saved_models/" + args.model_name + ".ckpt"))
+model = model_import.net(params).to(device).double()
+model.load_state_dict(torch.load("saved_models/" + args.model_name + ".ckpt", map_location=device))
 
 val = model_import.val
 
@@ -62,7 +62,7 @@ loss_function = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=params.lr)
 
 #Prepare data
-test_data = dataset.NO2Dataset(params, "../Dataset/Formatted",  split="test", do_augment=False)
+test_data = dataset.NO2Dataset(params, "../Dataset/Unscaled",  split="test", do_augment=False)
 num_epochs = params.epochs
 
 test_sampler = RandomSampler(test_data, num_samples=args.sample_size)

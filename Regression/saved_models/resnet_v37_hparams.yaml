@@ -1,0 +1,9 @@
+DEFAULT:
+  model: "resnet"
+  resnet_depth: 50
+  lr: 0.0002
+  batch_size: 1
+  epochs: 100
+  data_path: "../Dataset/ninab1_v10_SR/"
+  note: "MAE Loss, ninab1_v10 data, back to sigmoid"
+  num_inputs: 12

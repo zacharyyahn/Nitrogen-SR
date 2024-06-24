@@ -1,0 +1,8 @@
+DEFAULT:
+  model: "resnet"
+  lr: 0.0001
+  batch_size: 1
+  epochs: 500
+  data_path: "../Dataset/Formatted/"
+  note: "Trying a LR scheduler that divides in half every 5 epochs"
+  num_inputs: 12
