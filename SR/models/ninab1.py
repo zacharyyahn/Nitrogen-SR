@@ -17,13 +17,12 @@ class net(nn.Module):
         self.model = ninasr_b1(int(params.scale), pretrained=True)
 
         #Freeze everything except for the upsampler
-        # i = 0
-        # for child in self.model.children():
-        #     if i < 3:
-        #         child.requires_grad = False
-        #     if i == 3:
-        #         child.requires_grad = True
-        #     i += 1
+        i = 0
+        for child in self.model.children():
+            if i < 3:
+                child.requires_grad = False
+            if i == 3:
+                child.requires_grad = True
     
     def forward(self, im):
         
@@ -68,9 +67,9 @@ def val(model, device, loader, loss_function):
             ssims.append(ssim(out, hr))
     
     scores = {
-        "psnr": np.mean(psnrs),
-        "mse": np.mean(mses),
-        "ssim": np.mean(ssims)
+        "psnr": np.sum(psnrs)/len(psnrs),
+        "mse": np.sum(mses)/len(mses),
+        "ssim": np.sum(ssims)/len(ssims)
     }
     valid_loss = np.mean(losses)
     return valid_loss, scores

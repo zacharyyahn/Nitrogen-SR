@@ -23,3 +23,191 @@ Next:
 - Verifying by predicting pollution
 - Why are SR'd images to similar to the originals
 - Look at SR techniques and see if they add noise, that kind of thing
+
+@article{lancet2017,
+  title={GBD 2017 Risk Factor Collaborators (2018). Global, regional, and national comparative risk assessment of 84 behavioural, environmental and occupational, and metabolic risks or clusters of risks for 195 countries and territories, 1990-2017: a systematic analysis for the Global Burden of Disease Study 2017},
+  author={Lancet},
+  journal={},
+  volume={392},
+  number={10159},
+  pages={},
+  year={2017},
+  publisher={},
+  doi={10.1016/S0140-6736(18)32225-6}
+}
+
+@article{khajeamiri2021,
+  title={A review on the effect of air pollution and exposure to PM, NO2 , O3 , SO2 , CO and heavy metals on viral respiratory infections},
+  author={Yasaman Khajeamiri and Samira Sharifi and Nioosha Moradpour and Alireza Khajeamiri},
+  journal={Journal of Air Pollution and Health},
+  volume={5},
+  number={4},
+  pages={},
+  year={2021},
+  publisher={},
+  doi={10.18502/japh.v5i4.6445}
+}
+
+@online{epa2024,
+  author={EPA},
+  year={2024},
+  title={Nitrogen dioxide (NO2) air pollution},
+  url={https://www.epa.gov/no2-pollution},
+  note={Accessed 4-7-2024}
+}
+
+@article{lamsal2013,
+  title={Scaling Relationship for NO2 Pollution and Urban Population Size: A Satellite Perspective},
+  author={L. N. Lamsal and R. V. Martin and D. D. Parrish and N. A. Krotkov},
+  journal={Environmental Science Technology},
+  volume={47},
+  number={14},
+  pages={7855-7861},
+  year={2013},
+  publisher={},
+  doi={10.1021/es400744g}
+}
+
+@article{arain2008,
+  title={Correlation of nitrogen dioxide with other traffic pollutants near a major expressway},
+  author={Bernardo Beckerman and Michael Jerrett and Jeffrey R Brook and Dave K Verma and Muhammad A Arain and Murray M Finkelstein},
+  journal={Atmospheric Environment},
+  volume={42},
+  number={2},
+  pages={275-290},
+  year={2008},
+  publisher={},
+  doi={10.1016/j.atmosenv.2007.09.042}
+}
+
+@article{rowley2023,
+  title={Predicting air quality via multimodal AI and satellite imagery },
+  author={Andrew Rowley and Oktay Karakus},
+  journal={Remote Sensing of Environment},
+  volume={293},
+  number={},
+  pages={},
+  year={2023},
+  publisher={},
+  doi={10.1016/j.rse.2023.113609}
+}
+
+@article{sorek2022,
+  title={A Deep Learning Approach for Meter-Scale Air Quality Estimation in Urban Environments Using Very High-Spatial-Resolution Satellite Imagery},
+  author={Meytar Sorek-Hamer and Michael Von Pohle and Adwait Sahasrabhojanee and Ata Akbari Asanjan and Emily Deardorff and Esra Suel and Violet Lingenfelter andKamalika Das and Nikunj C. Oza and Majid Ezzati and Michael Brauer},
+  journal={Atmosphere},
+  volume={13},
+  number={5},
+  pages={696},
+  year={2022},
+  publisher={},
+  doi={10.3390/atmos13050696}
+}
+
+@article{scheibenreif2021,
+  title={A Novel Dataset and Benchmark for Surface No2 Prediction from Remote Sensing Data Including Covid Lockdown Measures},
+  author={Linus Scheibenreif and Michael Mommert and Damian Borth},
+  journal={IEEE International Geoscience and Remote Sensing Symposium IGARSS},
+  volume={},
+  number={},
+  pages={8364-8367},
+  year={2021},
+  publisher={},
+  doi={10.1109/IGARSS47720.2021.9554037}
+}
+
+@article{sdraka2022,
+  title={Deep Learning for Downscaling Remote Sensing Images: Fusion and Super-resolution},
+  author={Maria Sdraka and Ioannis Papoutsis and Bill Psomas and Konstantinos Vlachos and Konstantinos Ioannidis and Konstantinos Karantzalos and Ilias Gialampoukidis and Stefanos Vrochidis},
+  journal={IEEE Geosciences and Remote Sensing Magazine},
+  volume={10},
+  number={3},
+  pages={202-255},
+  year={2022},
+  publisher={},
+  doi={10.1109/MGRS.2022.3171836}
+}
+
+@article{liu2019,
+  title={Inferring Fine-Grained Air Pollution Map via a Spatiotemporal Super-Resolution Scheme},
+  author={Ning Liu and Rui Ma and Yue Wang and Lin Zhang},
+  journal={UbiComp/ISWC},
+  volume={},
+  number={},
+  pages={498-504},
+  year={2019},
+  publisher={},
+  doi={10.1145/3341162.334560}
+}
+
+@article{kowaleczko2023,
+title={A Real-world benchmark for sentinel-2 multi-image super-resolution},
+author={Pawel Kowaleczko and Tomasz Tarasiewicz and Maciej Ziaja and Daniel Kostrzewa and Jakub Nalepa and Przemyslaw Rokita and Michal Kawulok},
+journal={Scientific Data},
+volume={10},
+pages={644},
+year={2023},
+doi={10.1038/s41597-023-02538-9}
+}
+
+@article{valsesia2022,
+title={Permutation Invariance and Uncertainty in Multitemporal Image Super-Resolution},
+author={Diego Valsesia and Enrico Magli},
+journal={IEEE Transactions on Geosciences and Remote Sensing},
+volume={60},
+pages={1-12},
+year={2022},
+doi={10.1109/TGRS.2021.3130673
+}
+
+@article{an2022,
+title={TR-MISR: Multiimage Super-resolution based on feature fusion with transformers},
+author={Tai An and Xin Zhang and Chunlei Huo and Bin Xue and Lingfeng},
+journal={IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+volume={15},
+pages={1373-1388},
+year={2022},
+doi={10.1109/JSTARS.2022.3143532}
+
+@article{razzak2023,
+title={Multi-spectral multi-image super-resolution of Sentinel-2 with radiometric consistency losses and its effect on building delineation},
+author={Muhammed T. Razzak and Gonzalo Mateo-García and Gurvan Lecuyer and Luis Gómez-Chova and Yarin Gal and Freddie Kalaitzis},
+journal={ISPRS Journal of Photogrammertry and Remote Sensing},
+volume={195},
+pages={1-13},
+year={2023},
+doi={10.1016/j.isprsjprs.2022.10.019}
+}
+
+@article{shermeyer2019,
+title={The Effects of Super-Resolution on Object Detection Performance in Satellite Imagery},
+author={Jacob Shermeyer and Adam Van Etten},
+journal={IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+volume={},
+pages={1432-1441},
+year={2023},
+doi={10.1109/CVPRW.2019.00184}
+}
+
+@article{lanaras2018,
+title={Super-resolution of Sentinel-2 images: Learning a globally applicable deep neural
+network},
+author={Charis Lanarasa and Jose Bioucas-Dias and Silvano Galliania and Emmanuel Baltsaviasa and Konrad Schindler},
+journal={ISPRS Journal of Photgrammetry and Remote Sensing},
+volume={146},
+pages={305-319},
+year={2018},
+doi={10.1016/j.isprsjprs.2018.09.018}
+}
+
+@article{arefin2020,
+title={Multi-Image Super-Resolution for Remote Sensing using Deep Recurrent
+Networks},
+author={Md Rifat Arefin and Vincent Michalski and Pierre-Luc St-Charles and Alfredo Kalaitzis and
+Sookyung Kim and Samira E. Kahou and  Yoshua Bengio},
+journal={2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+volume={},
+pages={816-825},
+year={2020},
+doi={10.1109/CVPRW50498.2020.00111}
+}

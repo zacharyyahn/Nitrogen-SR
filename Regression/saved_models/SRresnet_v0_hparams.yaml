@@ -5,7 +5,7 @@ DEFAULT:
   epochs: 500
   data_path: "../Dataset/Formatted/"
   note: "Combined ninacustom 5,16 and resnet50 architecture"
-  num_inputs: 12
+  num_inputs: 4
   scale: 2.0
   sample_size: 500
   nina_res: 5

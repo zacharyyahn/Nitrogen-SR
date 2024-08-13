@@ -5,7 +5,8 @@ import shutil
 import json
 import argparse
 import numpy as np
-import soundfile as sf
+#import soundfile as sf
+import sys
 import shutil
 from metrics import mse, neg_psnr, dssim
 
@@ -26,7 +27,7 @@ import matplotlib.pyplot as plt
 # from sklearn.metrics import accuracy_score
 
 import dataset
-from utils.params import Params
+from params import Params
 #from utils.plotting import plot_training
 
 #Fetch model hyperparameters
@@ -67,8 +68,8 @@ train_data = dataset.NO2Dataset(params, "../Dataset/Unscaled",  split="train", d
 val_data = dataset.NO2Dataset(params, "../Dataset/Unscaled", split="val", do_augment=True)
 num_epochs = params.epochs
 
-train_sampler = RandomSampler(train_data, num_samples=params.sample_size)
-val_sampler = RandomSampler(val_data, num_samples=params.sample_size)
+train_sampler = RandomSampler(train_data, num_samples=params.sample_size, replacement=True)
+val_sampler = RandomSampler(val_data, num_samples=params.sample_size, replacement=True)
 
 train_loader = DataLoader(
         train_data, 
@@ -83,26 +84,26 @@ val_loader = DataLoader(
         sampler=val_sampler
     )
 
-print("Preparing to train", params.model, "for", num_epochs, "epochs.")
-print("Batch size:", params.batch_size, ", lr:", params.lr, ", loss_fn:", params.loss_fn)
-print("Sampling", params.sample_size, "samples from dataset")
+print("Preparing to train", params.model, "for", num_epochs, "epochs.", file=sys.stderr)
+print("Batch size:", params.batch_size, ", lr:", params.lr, ", loss_fn:", params.loss_fn, file=sys.stderr)
+print("Sampling", params.sample_size, "samples from dataset", file=sys.stderr)
 global_start = time.perf_counter()
 
 #Training and validation
 train_losses, train_psnrs, val_losses, val_psnrs = [], [], [], []
 for epoch in range(num_epochs):
     start_time = time.perf_counter()
-    print("---- Epoch Number: %s ----" % (epoch + 1))
+    print("---- Epoch Number: %s ----" % (epoch + 1), file=sys.stderr)
 
     #Train
     train(model, device, train_loader, optimizer, loss_function)
         # Evaluate on both the training and validation set. 
     train_loss, train_scores = val(model, device, train_loader, loss_function)
-    print('\rEpoch: [%d/%d], Train loss: %.6f, Train PSNR: %.4f, Train SSIM: %0.4f. Train MSE: %0.6f' % (epoch+1, num_epochs, train_loss, train_scores["psnr"], train_scores["ssim"], train_scores["mse"]))
+    print('\rEpoch: [%d/%d], Train loss: %.6f, Train PSNR: %.4f, Train SSIM: %0.4f. Train MSE: %0.6f' % (epoch+1, num_epochs, train_loss, train_scores["psnr"], train_scores["ssim"], train_scores["mse"]), file=sys.stderr)
 
     #Validation
     val_loss, val_scores = val(model, device, val_loader, loss_function)
-    print('Epoch: [%d/%d], Valid loss: %.6f, Valid PSNR: %.4f, Valid SSIM: %0.4f, Valid MSE: %0.6f' % (epoch+1, num_epochs, val_loss, val_scores["psnr"], val_scores["ssim"], val_scores["mse"]))
+    print('Epoch: [%d/%d], Valid loss: %.6f, Valid PSNR: %.4f, Valid SSIM: %0.4f, Valid MSE: %0.6f' % (epoch+1, num_epochs, val_loss, val_scores["psnr"], val_scores["ssim"], val_scores["mse"]), file=sys.stderr)
     
     # Collect some data for logging purposes. 
     train_losses.append(float(train_loss))
@@ -110,12 +111,12 @@ for epoch in range(num_epochs):
     val_losses.append(float(val_loss))
     val_psnrs.append(val_scores["psnr"])
     end_time = time.perf_counter()
-    print("Took %0.1f seconds" % (end_time - start_time))
+    print("Took %0.1f seconds" % (end_time - start_time), file=sys.stderr)
 
     #If we've found the best model so far
     if val_loss == np.min(val_losses):
 
-        print("Found the current best model for this training, saving....")
+        print("Found the current best model for this training, saving....", file=sys.stderr)
 
         global_end = time.perf_counter()
         torch.save(model.state_dict(), checkpoint_dir + "/" + params.model +"_v" + str(version) + ".ckpt")

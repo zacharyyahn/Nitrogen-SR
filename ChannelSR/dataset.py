@@ -6,8 +6,8 @@ import os
 import torch
 import numpy as np
 import pandas as pd
-import librosa
-import soundfile as sf
+#import librosa
+#import soundfile as sf
 import random
 from torch.utils.data.dataset import Dataset
 from PIL import Image

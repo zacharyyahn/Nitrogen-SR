@@ -1,0 +1,9 @@
+DEFAULT:
+  model: "resnet"
+  resnet_depth: 50
+  lr: 0.0002
+  batch_size: 1
+  epochs: 70
+  data_path: "../Dataset/ninab1_v10_SR/"
+  note: "400x400 4 channel ninab1 grid search!"
+  num_inputs: 4

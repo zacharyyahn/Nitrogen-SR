@@ -28,7 +28,7 @@ class net(nn.Module):
 
         #Make the input 3 channels instead of 1
         #out = torch.stack((im, im, im), axis=1)
-        
+        im = im.unsqueeze(0)
         return self.model(im)
     
 def train(model, device, train_loader, optimizer, loss_function):
@@ -70,9 +70,9 @@ def val(model, device, loader, loss_function):
             ssims.append(ssim(out, hr))
     
     scores = {
-        "psnr": np.mean(psnrs),
-        "mse": np.mean(mses),
-        "ssim": np.mean(ssims)
+        "psnr": np.sum(psnrs)/ len(psnrs),
+        "mse": np.sum(mses) / len(mses),
+        "ssim": np.sum(ssims) / len(ssims)
     }
     valid_loss = np.mean(losses)
     return valid_loss, scores

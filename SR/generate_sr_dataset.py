@@ -1,6 +1,6 @@
 from tqdm import tqdm
 from torchvision import transforms
-from utils.params import Params
+from params import Params
 import models.rcan
 import models.ninab1
 import models.ninab2
@@ -11,7 +11,7 @@ import numpy as np
 import cv2
 import os
 
-model_file = "ninab1_v6"
+model_file = "ninab1_v10"
 save_path = "../Dataset/" + model_file + "_SR/"
 
 model_dict = {
@@ -28,14 +28,14 @@ params = Params("saved_models/" + model_file + "_hparams.yaml", "DEFAULT")
 model_type = model_file[:model_file.find("_")]
 model_shell = model_dict[model_type]
 trained_model = model_shell.net(params).to(device)
-trained_model.load_state_dict(torch.load("saved_models/" + model_file + ".ckpt"))
+trained_model.load_state_dict(torch.load("saved_models/" + model_file + ".ckpt",map_location=device))
 trained_model.eval()
 
 print("Generating dataset with model", model_file)
 for path in tqdm(os.listdir("../Dataset/Formatted/")):
     im = cv2.imread("../Dataset/Formatted/" + path)
-    im = im[:, :, 0]
-    im = (im - np.min(im)) / (np.max(im) - np.min(im))
-    input_im = trans(im).float()
-    sr = 255.0 * trained_model(input_im).detach().numpy().reshape((3, 400, 400))[0, :, :]
+    #im = im[:, :, 0]
+    #im = (im - np.min(im)) / (np.max(im) - np.min(im))
+    input_im = trans(im).float().to(device).unsqueeze(0)
+    sr = 255.0 * trained_model(input_im).detach().cpu().numpy().reshape((3, 400, 400))[0, :, :]
     cv2.imwrite(save_path + path, sr)

@@ -2,7 +2,7 @@ import torch
 
 def mse(im1, im2):
     sq_diff = torch.square(im1 - im2).reshape((3, 200, 200))
-    mse = sq_diff.mean()
+    mse = torch.mean(sq_diff)
     return mse
 
 def psnr(im1, im2):

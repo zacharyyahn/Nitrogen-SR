@@ -1,0 +1,9 @@
+DEFAULT:
+  model: "resnet"
+  resnet_depth: 50
+  lr: 0.0002
+  batch_size: 1
+  epochs: 70
+  data_path: "../Dataset/edsr_20m_v0_SR/"
+  note: "200x200 channel edsr grid search!"
+  num_inputs: 10
