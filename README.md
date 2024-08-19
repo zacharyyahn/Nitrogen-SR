@@ -1,6 +1,6 @@
 This is the repository for my MSc Thesis at University College Dublin
 
-<b>Abstract</b>
+<b>Abstract</b></br>
 Nitrogen dioxide is a common air pollutant that can be diffi-
 cult to track with traditional ground-based monitoring. While satellites
 can provide plentiful data and global coverage, such images are often
